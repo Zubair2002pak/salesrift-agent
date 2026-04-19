@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 from livekit.agents import AgentSession, Agent, JobContext, WorkerOptions, cli, RoomInputOptions
-from livekit.plugins import groq, elevenlabs, silero
+from livekit.plugins import groq, silero, deepgram
 from calendar_booking import book_meeting
 
 logger = logging.getLogger("salesrift-agent")
@@ -117,9 +117,8 @@ async def entrypoint(ctx: JobContext):
     session = AgentSession(
         stt=groq.STT(model="whisper-large-v3-turbo"),
         llm=groq.LLM(model="meta-llama/llama-4-scout-17b-16e-instruct"),
-        tts=elevenlabs.TTS(
-            voice_id="EXAVITQu4vr4xnSDxMaL",
-            model="eleven_turbo_v2",
+        tts=deepgram.TTS(
+            model="aura-2-asteria-en",
         ),
         vad=vad,
     )
