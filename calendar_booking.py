@@ -108,10 +108,17 @@ def book_meeting(name, email, date_str, time_str, timezone_str="America/New_York
         'attendees': [
             {'email': email},
         ],
+        'conferenceData': {
+            'createRequest': {
+                'requestId': 'salesrift-' + name.replace(' ', '-').lower(),
+                'conferenceSolutionKey': {'type': 'hangoutsMeet'}
+            }
+        },
     }
     result = service.events().insert(
         calendarId=CALENDAR_ID,
         body=event,
-        sendUpdates='all'
+        sendUpdates='all',
+        conferenceDataVersion=1
     ).execute()
     return result.get('htmlLink')
