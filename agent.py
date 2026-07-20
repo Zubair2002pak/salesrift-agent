@@ -116,7 +116,7 @@ async def entrypoint(ctx: JobContext):
 
     session = AgentSession(
         stt=groq.STT(model="whisper-large-v3-turbo"),
-        llm=groq.LLM(model="meta-llama/llama-4-scout-17b-16e-instruct"),
+        llm=groq.LLM(model="openai/gpt-oss-120b"),
         tts=deepgram.TTS(
             model="aura-2-asteria-en",
         ),
